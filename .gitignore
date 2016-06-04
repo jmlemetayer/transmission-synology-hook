@@ -1,0 +1,6 @@
+# Normal rules
+.*
+*.pyc
+
+# Git files that we don't want to ignore even it they are dot-files
+!/.gitignore
