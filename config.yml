@@ -1,0 +1,9 @@
+synology:
+    url: "http://synology-url:5000"
+    destination: "shared-folder"
+    username: "username"
+    password: "password"
+webshare:
+    url: "http://webshare-url"
+    username: "username"
+    password: "password"

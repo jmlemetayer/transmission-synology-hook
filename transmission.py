@@ -2,15 +2,17 @@
 
 import os
 
-def foreach(callback):
-    tdir = os.getenv('TR_TORRENT_DIR')
-    assert tdir, "No torrent directory"
-    tname = os.getenv('TR_TORRENT_NAME')
-    assert tname, "No torrent name"
-    tpath = os.path.join(tdir, tname)
-    if os.path.isfile(tpath):
-        callback(os.path.relpath(tpath, tdir))
-    elif os.path.isdir(tpath):
-        for troot, tdirs, tfiles in os.walk(tpath):
-            for tfile in tfiles:
-                callback(os.path.relpath(os.path.join(troot, tfile), tdir))
+def foreach(callback, args=None):
+    directory = os.getenv('TR_TORRENT_DIR')
+    assert directory, "No torrent directory"
+    name = os.getenv('TR_TORRENT_NAME')
+    assert name, "No torrent name"
+    path = os.path.join(directory, name)
+    if os.path.isfile(path):
+        relpath = os.path.relpath(path, directory)
+        callback(relpath, args)
+    elif os.path.isdir(path):
+        for root, directories, files in os.walk(path):
+            for file in files:
+                relpath = os.path.relpath(os.path.join(root, file), directory)
+                callback(relpath, args)
