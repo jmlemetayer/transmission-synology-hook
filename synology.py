@@ -58,7 +58,7 @@ class synology:
         data = dict()
         data['force_parent'] = 'true'
         data['folder_path'] = os.path.join('/', folder_path.strip('/'))
-        data['name'] = name.strip('/')
+        data['name'] = '"' + name.strip('/') + '"'
         self.request('SYNO.FileStation.CreateFolder', 'create', data)
 
     def download(self, urls, destination, username=None, password=None):
